@@ -11,7 +11,7 @@ public class Car {
     private Long id;
     private String brand;
     private String model;
-    private boolean isAvailAble;
+    private boolean available;
     private double price;
 
     @ManyToOne
@@ -21,10 +21,10 @@ public class Car {
     public Car() {
     }
 
-    public Car(String brand, String model, boolean isAvailAble, double price, Office office) {
+    public Car(String brand, String model, boolean available, double price, Office office) {
         this.brand = brand;
         this.model = model;
-        this.isAvailAble = isAvailAble;
+        this.available = available;
         this.price = price;
         this.office = office;
     }
@@ -53,12 +53,12 @@ public class Car {
         this.model = model;
     }
 
-    public boolean isAvailAble() {
-        return isAvailAble;
+    public boolean isAvailable() {
+        return available;
     }
 
-    public void setAvailAble(boolean availAble) {
-        isAvailAble = availAble;
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
     public double getPrice() {
