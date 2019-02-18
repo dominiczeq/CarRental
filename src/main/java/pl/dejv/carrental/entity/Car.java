@@ -2,8 +2,10 @@ package pl.dejv.carrental.entity;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name = "car")
 public class Car {
 
     @Id
@@ -13,6 +15,9 @@ public class Car {
     private String model;
     private boolean available;
     private double price;
+
+    @OneToMany
+    private List<Reservation> reservations;
 
     @ManyToOne
     @JoinColumn(name ="office_id")
@@ -27,6 +32,14 @@ public class Car {
         this.available = available;
         this.price = price;
         this.office = office;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 
     public Long getId() {
@@ -75,5 +88,14 @@ public class Car {
 
     public void setOffice(Office office) {
         this.office = office;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", price=" + price +
+                '}';
     }
 }
