@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Car Rental</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+</head>
+
+<body>
+<h3>Dodaj samochód</h3>
+
+
+<form action="#" th:action="@{/car/add}" th:object="${newCar}" method="post">
+
+    <p>Marka samochodu: <input type="text" th:field="*{brand}"/></p>
+
+    <p>Model samochodu: <input type="text" th:field="*{model}"/></p>
+
+    <p>Czy jest już dostępny:
+
+        <input type="checkbox" th:field="*{available} " />
+    </p>
+
+    <p>Lokalizacja:<select th:field = "*{office}">
+        <option th:each="localisation : ${offices}"
+                th:value="${localisation.getId()}"
+                th:text="${localisation.getLocation()}"> Miejsce postoju
+        </option>
+    </select>
+
+
+    <p><input type="submit" value="Zapisz"/> <input type="reset" value="Reset"/></p>
+    </p>
+
+
+</form>
+
+</body>
+
+</html>

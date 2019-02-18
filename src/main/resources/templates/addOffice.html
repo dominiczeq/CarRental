@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Car Rental</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+</head>
+
+<body>
+<h3>Dodaj samochód</h3>
+
+<form action="#" th:action="@{/office/add}" th:object="${newOffice}" method="post">
+
+    <p>Lokalizacja biura: <input type="text" th:field="*{location}"/></p>
+
+    <p><input type="submit" value="Zapisz"/></p>
+
+</form>
+
+
+</body>
+
+</html>
