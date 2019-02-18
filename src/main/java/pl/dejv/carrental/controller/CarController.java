@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.dejv.carrental.entity.Car;
 import pl.dejv.carrental.repository.CarRepository;
+import pl.dejv.carrental.repository.OfficeRepository;
 
 import java.util.List;
 
@@ -18,10 +19,14 @@ public class CarController {
     @Autowired
     private CarRepository carRepository;
 
+    @Autowired
+    private OfficeRepository officeRepository;
+
 
     @GetMapping("/add")
     public String addCar(Model model) {
         model.addAttribute("newCar", new Car());
+        model.addAttribute("offices", officeRepository.findAll());
         return "addCar";
     }
 
