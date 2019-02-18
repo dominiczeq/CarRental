@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Car Rental</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+</head>
+
+<body>
+
+<p>Data odbioru samochodu: <span th:text="${newReservation.getPickupDate().toString()}"></span></p>
+<p>Data odbioru samochodu: <span th:text="${newReservation.getReturnDate().toString()}"></span></p>
+
+<form action="#" th:action="@{/reservation/add2}" th:object="${newReservation}" method="post">
+
+    <p>Wybierz samochód:
+        <select th:value="${cars}" th:field="*{car}">
+            <option th:each="car : ${cars}"
+                    th:value="${car.getId()}"
+                    th:text="${car.toString()}"> Wybierz samochód
+            </option>
+        </select>
+    </p>
+
+    <p>Gdzie go chcesz zwrócić:
+        <select th:value="${allOffices}" th:field="*{returnLocation}">
+            <option th:each="office : ${allOffices}"
+                    th:value="${office.getId()}"
+                    th:text="${office.getLocation()}"> Wybierz miejsce zwrotu
+            </option>
+        </select>
+    </p>
+
+    <p>
+        <input type="submit" value="Zapisz"/></p>
+
+</form>
+
+</body>
+
+</html>
