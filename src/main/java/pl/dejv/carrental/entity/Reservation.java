@@ -30,7 +30,7 @@ public class Reservation {
     @JoinColumn(name = "car_id")
     private Car car;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "client_id")
     private Client client;
 

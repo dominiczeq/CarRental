@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title>Car Rental</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+</head>
+
+<body>
+
+<div>
+
+    <h3>Oto twoja rezerwacja: </h3>
+
+    <p th:object="${newReservation}">
+        Data odbioru samochodu: <span th:text="*{pickupDate.toString()}"></span></br>
+        Data zwrotu samochodu: <span th:text="*{returnDate.toString()}"></span></br>
+        Miejsce wypożyczenia: <span th:text="*{pickupLocation.location}"></span></br>
+        Miejsce zwrotu: <span th:text="*{returnLocation.location}"></span></br>
+        Samochód: <span th:text="*{car.getBrand() + ' ' + car.getModel()}"></span>
+
+    </p>
+
+    <p> Podaj swoje dane aby dokończyć rezerwację: </p>
+
+
+    <form action="#" th:action="@{/reservation/add3}" th:object="${client}" method="post">
+        <p> Imię: <input type="text" th:field="*{firstName}"></p>
+        <p> Nazwisko: <input type="text" th:field="*{lastName}"></p>
+        <p> Twój adres email: <input type="email" th:field="*{email}"></p>
+
+        <p>
+            <input type="submit" value="Zarezerwuj"></p>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

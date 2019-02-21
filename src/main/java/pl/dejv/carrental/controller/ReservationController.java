@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.dejv.carrental.configuration.SessionManager;
 import pl.dejv.carrental.entity.Car;
+import pl.dejv.carrental.entity.Client;
 import pl.dejv.carrental.entity.Office;
 import pl.dejv.carrental.entity.Reservation;
 import pl.dejv.carrental.repository.CarRepository;
@@ -66,17 +67,19 @@ public class ReservationController {
     }
 
     @PostMapping("/add2")
-    public String reservation2(@ModelAttribute("newReservation") Reservation reservation) {
+    public String reservation2(@ModelAttribute("newReservation") Reservation reservation, Model m) {
 
         HttpSession s = SessionManager.session();
         Reservation result = (Reservation) s.getAttribute("completeReservation");
         result.setReturnLocation(reservation.getReturnLocation());
         result.setCar(reservation.getCar());
         result.setOrderedCar(true);
-        s.invalidate();
 
-        this.reservationRepository.save(result);
-        return "redirect:/home";
+        Client client = new Client();
+        m.addAttribute("client", client);
+        m.addAttribute("newReservation", result);
+
+        return "addReservation3";
     }
 
     @PostMapping("/noCars")
@@ -85,6 +88,17 @@ public class ReservationController {
         Reservation result = (Reservation) s.getAttribute("completeReservation");
         result.setEmail(reservation.getEmail());
         result.setOrderedCar(false);
+        s.invalidate();
+
+        this.reservationRepository.save(result);
+        return "redirect:/home";
+    }
+
+    @PostMapping("/add3")
+    public String reservation3 (@ModelAttribute("newReservaiton") Reservation reservation, Client client) {
+        HttpSession s = SessionManager.session();
+        Reservation result = (Reservation) s.getAttribute("completeReservation");
+        result.setClient(client);
         s.invalidate();
 
         this.reservationRepository.save(result);
