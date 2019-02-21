@@ -72,6 +72,19 @@ public class ReservationController {
         Reservation result = (Reservation) s.getAttribute("completeReservation");
         result.setReturnLocation(reservation.getReturnLocation());
         result.setCar(reservation.getCar());
+        result.setOrderedCar(true);
+        s.invalidate();
+
+        this.reservationRepository.save(result);
+        return "redirect:/home";
+    }
+
+    @PostMapping("/noCars")
+    public String noCars(@ModelAttribute("newReservation") Reservation reservation) {
+        HttpSession s = SessionManager.session();
+        Reservation result = (Reservation) s.getAttribute("completeReservation");
+        result.setEmail(reservation.getEmail());
+        result.setOrderedCar(false);
         s.invalidate();
 
         this.reservationRepository.save(result);

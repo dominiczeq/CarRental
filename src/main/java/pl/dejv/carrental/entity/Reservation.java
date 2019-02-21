@@ -34,6 +34,26 @@ public class Reservation {
     @JoinColumn(name = "client_id")
     private Client client;
 
+    private String email;
+
+    private boolean orderedCar;
+
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isOrderedCar() {
+        return orderedCar;
+    }
+
+    public void setOrderedCar(boolean orderedCar) {
+        this.orderedCar = orderedCar;
+    }
 
     public long getId() {
         return id;

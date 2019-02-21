@@ -10,6 +10,24 @@
 
 <body>
 
+<div th:if="${cars.isEmpty()}">
+
+    <p> Przepraszamy, nie mamy dostępnych w tym terminie samochodów</p>
+
+    Jeśli chcesz być powiadomiony, gdy samochód w wybranym terminie będzie dostępny,
+    wpisz swój adres email w polu poniżej i kliknij "Powiadom"
+
+    <form action="#" th:action="@{/reservation/noCars}" th:object="${newReservation}" method="post">
+        <p> Twój adres email: <input type="email" th:field="*{email}">
+
+            <input type="submit" value="Powiadom">
+        </p>
+
+    </form>
+
+</div>
+
+<div th:unless="${cars.isEmpty()}">
 <p>Data odbioru samochodu: <span th:text="${newReservation.getPickupDate().toString()}"></span></p>
 <p>Data odbioru samochodu: <span th:text="${newReservation.getReturnDate().toString()}"></span></p>
 
@@ -37,6 +55,8 @@
         <input type="submit" value="Zapisz"/></p>
 
 </form>
+
+</div>
 
 </body>
 
