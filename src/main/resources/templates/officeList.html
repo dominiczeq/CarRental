@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Car Rental</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+</head>
+
+<body>
+<h3>Lista biur:</h3>
+
+<table border="1">
+    <tbody>
+        <th>Id biura</th>
+        <th>Lokalizacja biura</th>
+
+    <tr th:each="o : ${allOffices}" th:object="${o}">
+        <td th:text="*{id}"></td>
+        <td th:text="*{location}"></td>
+    </tr>
+
+    </tbody>
+</table>
+
+</body>
+
+</html>
