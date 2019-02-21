@@ -17,4 +17,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
                     "return_date BETWEEN CAST(:from AS DATE) AND CAST(:to AS DATE);",
             nativeQuery = true)
     List<Reservation> findAllCarsReservationByDate(@Param("from") LocalDate from, @Param("to") LocalDate to);
+
+    List<Reservation> findByOrderedCarOrderByPickupDate(boolean ordered);
 }

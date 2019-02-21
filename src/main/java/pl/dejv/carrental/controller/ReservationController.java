@@ -101,4 +101,18 @@ public class ReservationController {
         return this.carRepository.findAll();
     }
 
+    @GetMapping("/reservationList")
+    public String reservationList(Model m) {
+
+        m.addAttribute("allReservations", this.reservationRepository.findByOrderedCarOrderByPickupDate(true));
+        return "reservationList";
+    }
+
+    @GetMapping("/noOrderedList")
+    public String noOrderedList(Model m) {
+
+        m.addAttribute("noOrdered", this.reservationRepository.findByOrderedCarOrderByPickupDate(false));
+       return "noOrderedList";
+    }
+
 }
