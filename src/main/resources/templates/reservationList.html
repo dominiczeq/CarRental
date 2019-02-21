@@ -19,6 +19,7 @@
     <th>Lokalizacja wypożyczenia</th>
     <th>Lokalizacja zwrotu</th>
     <th>Samochód</th>
+    <th>Imię i nazwisko</th>
 
 
     <tr th:each=" r : ${allReservations}" th:object="${r}">
@@ -29,6 +30,9 @@
         <td th:text="*{returnLocation.getLocation()}"></td>
         <td th:text="*{'ID:' + car.id + ', ' + car.brand +' ' + car.model}"></td>
 
+        <span td th:if="*{client}" !=null>
+            <td th:text="*{client.firstName + ' ' + client.lastName}"></td>
+            </span>
     </tr>
     </tbody>
 
