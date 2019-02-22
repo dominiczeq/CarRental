@@ -15,6 +15,7 @@ import pl.dejv.carrental.entity.Reservation;
 import pl.dejv.carrental.repository.CarRepository;
 import pl.dejv.carrental.repository.OfficeRepository;
 import pl.dejv.carrental.repository.ReservationRepository;
+import pl.dejv.carrental.service.EmailSender;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
@@ -33,6 +34,9 @@ public class ReservationController {
 
     @Autowired
     private ReservationRepository reservationRepository;
+
+    @Autowired
+    private EmailSender emailSender;
 
     @GetMapping("/add")
     public String reservation(Model m) {
@@ -102,6 +106,7 @@ public class ReservationController {
         s.invalidate();
 
         this.reservationRepository.save(result);
+        emailSender.reservationConfirmation(result);
         return "redirect:/home";
     }
 
