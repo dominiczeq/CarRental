@@ -2,21 +2,27 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
+<head th:replace="~{headContent :: header}">
     <title>Car Rental</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 
 <body>
+<div class="container">
 
-<h3>Witaj na stronie wypożyczalni samochodów!</h3>
+    <div th:replace="~{headerMenu.html :: headerMenu}"></div>
+    <h3>Witaj na stronie wypożyczalni samochodów!</h3>
 
-<a th:href="@{/car/add}">Dodaj samochód</a></br>
-<a th:href="@{/car/list}">Lista samochodów</a></br>
-<a th:href="@{/office/add}">Dodaj biuro</a></br>
-<a th:href="@{/office/list}">Lista biur</a></br>
-<a th:href="@{/reservation/add}">Dokonaj rezerwacji</a></br>
+    <a th:href="@{/car/add}">Dodaj samochód</a></br>
+    <a th:href="@{/car/list}">Lista samochodów</a></br>
+    <a th:href="@{/office/add}">Dodaj biuro</a></br>
+    <a th:href="@{/office/list}">Lista biur</a></br>
+    <a th:href="@{/reservation/add}">Dokonaj rezerwacji</a></br>
+    <a th:href="@{/reservation/reservationList}">Lista dokonanych rezerwacji</a></br>
+    <a th:href="@{/reservation/noOrderedList}">Lista zapytań o rezerwację</a></br>
+
+    <div th:replace="~{footer :: footer}"></div>
+</div>
 
 </body>
 
