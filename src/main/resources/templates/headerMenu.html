@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<body>
+
+<div th:fragment="headerMenu">
+
+    <div class="btn-group">
+        <a href="/" class="btn btn-primary btn-lg" role="button">Strona główna</a>
+    </div>
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary btn-lg dropdown-toggle dropdown-toggle-split"
+                data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">Samochody
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" th:href="@{/car/add}">Dodaj samochód</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" a th:href="@{/car/list}">Lista wszystkich samochodów</a>
+        </div>
+    </div>
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary btn-lg dropdown-toggle dropdown-toggle-split"
+                data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">Biura
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" th:href="@{/office/add}">Dodaj biuro</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" th:href="@{/office/list}">Lista wszystkich biur</a>
+        </div>
+    </div>
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary btn-lg dropdown-toggle dropdown-toggle-split"
+                data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">Rezerwacje
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" th:href="@{/reservation/reservationList}">Lista dokonanych rezerwacji</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" th:href="@{/reservation/noOrderedList}">Lista zapytań o rezerwację</a>
+        </div>
+    </div>
+
+    <div class="btn-group">
+        <a href="/" class="btn btn-primary btn-lg" role="button">O nas</a>
+    </div>
+    </br></br>
+
+</div>
+
+</body>
+
+</html>
