@@ -2,37 +2,39 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
+<head th:replace="~{headContent :: header}">
     <title>Car Rental</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
 </head>
 
 <body>
-<h3>Zapytania o rezerwacje:</h3>
+<div class="container">
 
-<table border="1">
+    <div th:replace="~{headerMenu.html :: headerMenu}"></div>
+    <h3>Zapytania o rezerwacje:</h3>
 
-    <tbody>
-    <th>Data wypożyczenia</th>
-    <th>Data zwrotu</th>
-    <th>Lokalizacja wypożyczenia</th>
-    <th>Adres email klienta</th>
+    <table class="table table-striped">
+        <thead>
+        <th>Data wypożyczenia</th>
+        <th>Data zwrotu</th>
+        <th>Lokalizacja wypożyczenia</th>
+        <th>Adres email klienta</th>
+        </thead>
 
+        <tbody>
+        <tr scope="row" th:each=" r : ${noOrdered}" th:object="${r}">
 
+            <td th:text="*{pickupDate.toString()}"></td>
+            <td th:text="*{returnDate.toString()}"></td>
+            <td th:text="*{pickupLocation.location}"></td>
+            <td th:text="*{email}"></td>
 
-    <tr th:each=" r : ${noOrdered}" th:object="${r}">
+        </tr>
+        </tbody>
 
-        <td th:text="*{pickupDate.toString()}"></td>
-        <td th:text="*{returnDate.toString()}"></td>
-        <td th:text="*{pickupLocation.location}"></td>
-        <td th:text="*{email}"></td>
-
-    </tr>
-    </tbody>
-
-</table>
-
+    </table>
+    <div th:replace="~{footer :: footer}"></div>
+</div>
 </body>
 
 </html>

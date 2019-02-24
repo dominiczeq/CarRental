@@ -1,42 +1,48 @@
-<!DOCTYPE html>
+<!DOCTYPE html>'
 
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
+<head th:replace="~{headContent :: header}">
     <title>Car Rental</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
 </head>
 
 <body>
-<h3>Lista dokonanych rezerwacji:</h3>
+<div class="container">
 
-<table border="1">
+    <div th:replace="~{headerMenu.html :: headerMenu}"></div>
+    <h3>Lista dokonanych rezerwacji:</h3>
 
-    <tbody>
-    <th>Data wypożyczenia</th>
-    <th>Data zwrotu</th>
-    <th>Lokalizacja wypożyczenia</th>
-    <th>Lokalizacja zwrotu</th>
-    <th>Samochód</th>
-    <th>Imię i nazwisko</th>
+    <table class="table table-striped">
 
+        <thead>
+        <th>Data wypożyczenia</th>
+        <th>Data zwrotu</th>
+        <th>Lokalizacja wypożyczenia</th>
+        <th>Lokalizacja zwrotu</th>
+        <th>Samochód</th>
+        <th>Imię i nazwisko</th>
+        </thead>
 
-    <tr th:each=" r : ${allReservations}" th:object="${r}">
+        <tbody>
+        <tr th:each=" r : ${allReservations}" th:object="${r}">
 
-        <td th:text="*{pickupDate.toString()}"></td>
-        <td th:text="*{returnDate.toString()}"></td>
-        <td th:text="*{pickupLocation.location}"></td>
-        <td th:text="*{returnLocation.getLocation()}"></td>
-        <td th:text="*{'ID:' + car.id + ', ' + car.brand +' ' + car.model}"></td>
+            <td th:text="*{pickupDate.toString()}"></td>
+            <td th:text="*{returnDate.toString()}"></td>
+            <td th:text="*{pickupLocation.location}"></td>
+            <td th:text="*{returnLocation.getLocation()}"></td>
+            <td th:text="*{'ID:' + car.id + ', ' + car.brand +' ' + car.model}"></td>
 
-        <span td th:if="*{client}" !=null>
+            <span td th:if="*{client}" !=null>
             <td th:text="*{client.firstName + ' ' + client.lastName}"></td>
             </span>
-    </tr>
-    </tbody>
+        </tr>
+        </tbody>
 
-</table>
+    </table>
+
+    <div th:replace="~{footer :: footer}"></div>
+</div>
 
 </body>
 

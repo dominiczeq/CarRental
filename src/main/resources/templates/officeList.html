@@ -2,27 +2,36 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
+<head th:replace="~{headContent :: header}">
     <title>Car Rental</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
 </head>
 
 <body>
-<h3>Lista biur:</h3>
+<div class="container">
 
-<table border="1">
-    <tbody>
+    <div th:replace="~{headerMenu.html :: headerMenu}"></div>
+    <h3>Lista biur:</h3>
+
+    <table class="table table-striped">
+        <thead>
         <th>Id biura</th>
         <th>Lokalizacja biura</th>
+        </thead>
 
-    <tr th:each="o : ${allOffices}" th:object="${o}">
-        <td th:text="*{id}"></td>
-        <td th:text="*{location}"></td>
-    </tr>
+        <tbody>
+        <tr scope="row" th:each="o : ${allOffices}" th:object="${o}">
 
-    </tbody>
-</table>
+            <td th:text="*{id}"></td>
+            <td th:text="*{location}"></td>
+
+        </tr>
+        </tbody>
+
+    </table>
+
+    <div th:replace="~{footer :: footer}"></div>
+</div>
 
 </body>
 
